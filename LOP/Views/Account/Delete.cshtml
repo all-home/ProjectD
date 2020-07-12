@@ -1,0 +1,39 @@
+﻿@model LOP.Models.User
+
+@{
+    ViewData["Title"] = "Удалить?";
+}
+
+
+
+<h3>Вы дествмтельно хотитеудалить пользователя?</h3>
+<div>
+       
+    <dl class="dl-horizontal">
+        <dt>
+            Имя
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Группа
+        </dt>
+        <dd>
+            @if (Model.RoleId == 1)
+            {
+                <text>Админ.</text>
+            }
+            else
+            {
+                <text>Польз.</text>
+            }   
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete"> 
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-default" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+﻿
+@model LOP.Models.Person
+
+
+<div class="container">
+    <div class="raw">
+        <div class="col-md-6 col-md-offset-4 center-top">
+
+            <form asp-action="Result" asp-anti-forgery="true">
+                <div class="validation" asp-validation-summary="ModelOnly" />
+                <div class="card" style="width: 18rem;">
+                    <img width="200" class="card-img-top" src="~/images/Icons/Watch.png" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <td>Приложите метку</td>
+                            <input autofocus type="password" asp-for="TagId"/>
+                             </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default"  id="sButton">Поиск</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+

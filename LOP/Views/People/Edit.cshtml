@@ -1,0 +1,55 @@
+﻿@model LOP.ViewModels.PersonModel
+
+@{
+    ViewData["Title"] = "Редпктирование";
+}
+
+
+<h2>Изменение данных работника</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Ф.И.О.</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Должность</label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">TagID</label>
+                <input asp-for="TagId" class="form-control" type="password" />
+                <span asp-validation-for="TagId" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label class="control-label">Фото</label>
+                @if (Model.Image != null)
+                {
+                    <!-- <img style='width:80px; height:60px;' src="data:image/jpeg;base64,(Convert.ToBase64String(Model.Image))" />-->
+                }
+                <div class="editor-field">
+                    <input type="file" name="Image" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Изменить" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

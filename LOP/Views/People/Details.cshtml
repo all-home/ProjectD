@@ -1,0 +1,55 @@
+﻿@model LOP.Models.Person;
+
+
+<div class="container">
+    <div class="row">
+        <!--Photo-->
+        <div class="col-md-4">
+            @if (Model.Image != null)
+            {
+                <img style='width:300px; height:250px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.Image))" />
+            }
+
+        </div>
+        <!--Bio-->
+        <div class="col-md-3 col-md-offset-2">
+            <div class="center-block">
+                <dl class="dl-horizontal">
+                    <dt>Фамилия</dt>
+                    <dd>
+                        @Html.DisplayFor(model=>Model.Surname)
+                    </dd>
+
+                    <dt>Имя</dt>
+                    <dd>
+                         @Html.DisplayFor(model=>Model.Name)
+                    </dd>
+
+                    <dt>Отчество</dt>
+                    <dd>
+                        @Html.DisplayFor(model => Model.Patronymic)
+                    </dd>
+
+                    <dt>Номер телефона</dt>
+                    <dd>
+                        @Html.DisplayFor(Model=>Model.Tel)
+                        </dd>
+                    <dt>Должность</dt>
+                    <dd>
+                        @Html.DisplayFor(Model=>Model.Position)
+                        </dd>
+
+                </dl>
+
+
+        </div>
+
+
+    </div>
+        
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Изменить</a> |
+    <a class="btn btn-default" asp-action="Index">Назад</a>
+</div>

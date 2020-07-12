@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Приветствую!";
+}
+
+
+    <div class="container">   
+        <div class="row" >
+            <div class="center-block" >
+        <h1>Приветствую, @User.Identity.Name !</h1>
+
+        @if (User.IsInRole("admin"))
+        {
+            <div class="container center-block">
+            <div class="row">
+                <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img width="200" class="card-img-top" src="~/images/Icons/Search.png" alt="Card image cap">
+                    <div class="card-body">
+                    <a asp-area="" asp-controller="SearchPerson" asp-action="Index" class="btn btn-primary">Поиск по метке</a>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img width="200" class="card-img-top" src="~/images/Icons/People.png" alt="Card image cap">
+                    <div class="card-body">
+                        <a asp-area="" asp-controller="People" asp-action="Index" class="btn btn-primary">Доб. работника в БД</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card" style="width: 18rem;">
+                        <img width="200" class="card-img-top" src="~/images/Icons/Account.png" alt="Card image cap">
+                        <div class="card-body">
+                            <a asp-area="" asp-controller="Account" asp-action="Index" class="btn btn-primary">Рег. пользователя БД</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+             
+
+
+        }
+        else
+        {
+            <div class="container center-block">
+            <div class="row">
+                <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img width="200" class="card-img-top" src="~/images/Icons/Search.png" alt="Card image cap">
+                    <div class="card-body">
+                    <a href="SearchPerson/index" class="btn btn-primary">Поиск по метке</a>
+                    </div>
+                </div>
+                </div>
+                                     
+    
+        
+                </div>
+        </div>
+        }
+</div>
+        </div>
+    
