@@ -1,4 +1,8 @@
-﻿namespace LOP.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace LOP.Models
 {
     public class Person
     {
@@ -10,5 +14,16 @@
         public string Tel { get; set; }
         public string Position { get; set; }
         public byte[] Image { get; set; }
+    }
+
+    //class contain Person stat
+    public class Statistics
+    { 
+        [Key]
+        [ForeignKey("Person")]
+        public DateTime StartWork { get; set; }  
+        public DateTime EndWork { get; set; }
+        public Person Person { get; set; }
+    
     }
 }
