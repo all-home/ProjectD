@@ -17,7 +17,7 @@ namespace LOP.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async  Task<IActionResult> Index()
         {
             return View("Index");
 

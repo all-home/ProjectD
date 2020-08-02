@@ -21,10 +21,10 @@ namespace LOP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
+            string connection = Configuration.GetConnectionString("AuthConnection");
             services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
-            string _connection = Configuration.GetConnectionString("AuthConnection");
-            services.AddDbContext<UserContext>(options => options.UseSqlServer(_connection));
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+           
 
             //services.AddControllersWithViews();
             /*  services.Configure<CookiePolicyOptions>(options =>
