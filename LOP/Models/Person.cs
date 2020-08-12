@@ -13,7 +13,7 @@ namespace LOP.Models
         public string Patronymic { get; set; }
         public string Tel { get; set; }
         public string Position { get; set; }
-        public byte[] Image { get; set; }
+        public int ImageID { get; set; }
     }
 
     //class contain Person stat
