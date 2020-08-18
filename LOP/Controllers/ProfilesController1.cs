@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LOP.Controllers
 {
-    public class PeopleViewController : Controller
+    public class ProfilesController1 : Controller
     {
         public IActionResult Index()
         {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using LOP.People.Models;
 
-namespace LOP.Models
+namespace LOP.People.ModelsModels
 {
     public class PersonContext: DbContext
     {

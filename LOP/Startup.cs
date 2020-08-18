@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LOP.Models;
 using LOP.FileUpload.Models;
+using LOP.SystemProfelis.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -22,10 +23,12 @@ namespace LOP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("AuthConnection");
+            string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ProfileContext>(options => options.UseSqlServer(connection));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //services.AddControllersWithViews();
             /*  services.Configure<CookiePolicyOptions>(options =>

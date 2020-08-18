@@ -7,6 +7,7 @@ namespace LOP.SystemProfelis
 {
     public class CProfiles
     {
+
         ProfileContext _context;
 
         public CProfiles(ProfileContext context)
@@ -137,14 +138,7 @@ namespace LOP.SystemProfelis
             return null;
 
         }
-        /*
-        this class methods
-             
-
-        method for get information about all profiles in db 
-
-       
-        */
+        
 
     }
 }
