@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LOP.Models;
+using LOP.FileUpload.Models;
+using LOP.SystemProfelis.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -23,8 +25,10 @@ namespace LOP
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
-            string _connection = Configuration.GetConnectionString("AuthConnection");
-            services.AddDbContext<UserContext>(options => options.UseSqlServer(_connection));
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<FileContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ProfileContext>(options => options.UseSqlServer(connection));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //services.AddControllersWithViews();
             /*  services.Configure<CookiePolicyOptions>(options =>
