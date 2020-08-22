@@ -29,7 +29,10 @@ namespace LOP.SystemProfelis
             {
                 try
                 {
-                    ProfileModel NProfile = new ProfileModel { Name = PName, WorkEndParam = WEnd, WorkStartParam = WSart };
+                    ProfileModel NProfile = new ProfileModel { 
+                        Name = PName, 
+                        WorkEndParam = WEnd, 
+                        WorkStartParam = WSart };
                     await _context.Files.AddAsync(NProfile);
                     await _context.SaveChangesAsync();
                 
@@ -112,6 +115,7 @@ namespace LOP.SystemProfelis
                 if (PToRemove != null)
                 {
                     _context.Files.Remove(PToRemove);
+                    await _context.SaveChangesAsync();
 
                 }
             

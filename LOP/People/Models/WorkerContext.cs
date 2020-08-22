@@ -3,12 +3,12 @@ using LOP.People.Models;
 
 namespace LOP.People.ModelsModels
 {
-    public class PersonContext: DbContext
+    public class WorkerContext: DbContext
     {
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Worker> Workers { get; set; }
         public DbSet<Statistics> Stat { get; set; }
 
-        public PersonContext(DbContextOptions<PersonContext> options)
+        public WorkerContext(DbContextOptions<WorkerContext> options)
             : base(options)
         {
             Database.EnsureCreated();

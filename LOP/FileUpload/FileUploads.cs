@@ -12,48 +12,56 @@ namespace LOP.FileUpload
     {
         FileContext _context;
         IHostingEnvironment _appEnvironment;
-        public FileUploads(FileContext context, IHostingEnvironment appEnvironment)
+        public  FileUploads(FileContext context, IHostingEnvironment appEnvironment)
         {
             _context = context;
             _appEnvironment = appEnvironment;
         }
 
         //Upload file to server method
-        public async Task<int> UploadFileToServer(IFormFile uploadedFile, string type)
+        // type 1 -avatar, type 2 - workers photos
+        public async Task<int?> UploadFileToServer(IFormFile uploadedFile, int type)
         {
-            string path;
-            string FileName = GetFilename();
-            int id = 0;
+            
+               string path;
+               string FileName = GetFilename();
+               int? id = null;
 
             if (FileName != null)
             {
-                if (type.Contains("avatar"))
+                await Task.Run(() =>
                 {
-                    path = _appEnvironment.WebRootPath + "/Files/Avatars" + FileName;
-                }
-                else
-                {
-                    path = _appEnvironment.WebRootPath + "/Files/PeoplePhotos" + FileName;
-
-                }
-
-                if (uploadedFile != null)
-                {
-                    try
+                    if (type == 1)
                     {
-                        using (var fileStream = new FileStream(path, FileMode.Create))
-                        {
-                            await uploadedFile.CopyToAsync(fileStream);
-                        }
-                        FileModel file = new FileModel { Name = FileName, Patch = path };
-                        id = file.id;
-                        _context.Files.Add(file);
-                        _context.SaveChanges();
+                        path = _appEnvironment.WebRootPath + "/Files/Avatars" + FileName;
                     }
-                    catch { }
-                }
+                    else
+                    {
+                        path = _appEnvironment.WebRootPath + "/Files/PeoplePhotos" + FileName;
+
+                    }
+
+                    if (uploadedFile != null)
+                    {
+                        try
+                        {
+                            using (var fileStream = new FileStream(path, FileMode.Create))
+                            {
+                                uploadedFile.CopyToAsync(fileStream);
+                            }
+                            FileModel file = new FileModel { Name = FileName, Patch = path };
+                            id = file.id;
+                            _context.Files.Add(file);
+                            _context.SaveChanges();
+                        }
+                        catch { }
+                    }
+                });
             }
-            return id;
+                      
+           return id;
+           
+                       
         }
 
         //Generate file name and check them
@@ -101,6 +109,22 @@ namespace LOP.FileUpload
             }
 
             return null;
+        }
+
+        //delite file by adress
+        public async void DeleteFile(int? ImageID)
+        {
+            if (ImageID != null)
+            {
+                await Task.Run(()=> {
+
+                    var CFile = _context.Files.Find(ImageID);                                      
+                    File.Delete(CFile.Patch);
+                    _context.Remove(CFile);
+                    _context.SaveChanges();
+                
+                });
+            }
         }
            
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LOP.People.Models
 {
-    public class Person
+    public class Worker
     {
         public int id { get; set; }
         public int TagId { get; set; }
@@ -20,10 +20,12 @@ namespace LOP.People.Models
     public class Statistics
     { 
         [Key]
-        [ForeignKey("Person")]
+        [ForeignKey("Worker")]
         public DateTime StartWork { get; set; }  
         public DateTime EndWork { get; set; }
-        public Person Person { get; set; }
+        public string Late { get; set; }
+        public string Overtime { get; set; }
+        public Worker Person { get; set; }
     
     }
 }
