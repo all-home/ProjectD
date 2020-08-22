@@ -11,8 +11,7 @@ namespace LOP.People
     public class SearchWorkerById
     {
         WorkerContext _context;
-        static CProfiles Profile;
-
+        
         public SearchWorkerById(WorkerContext context)
         {
             _context = context;

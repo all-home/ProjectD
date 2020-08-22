@@ -8,6 +8,7 @@ using LOP.FileUpload.Models;
 using LOP.SystemProfelis.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using LOP.People.ModelsModels;
 
 namespace LOP
 {
@@ -24,7 +25,7 @@ namespace LOP
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<PersonContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<WorkerContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<ProfileContext>(options => options.UseSqlServer(connection));
